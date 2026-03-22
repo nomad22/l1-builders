@@ -2,7 +2,7 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
-import sgMail from "@sendgrid/mail";
+import { Resend } from "resend";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,38 +21,36 @@ async function startServer() {
       return res.status(400).json({ error: "Name and email are required." });
     }
 
-    const apiKey = process.env.SENDGRID_API_KEY;
+    const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
-      console.error("SENDGRID_API_KEY not set");
+      console.error("RESEND_API_KEY not set");
       return res.status(500).json({ error: "Email service not configured." });
     }
 
-    sgMail.setApiKey(apiKey);
-
-    const msg = {
-      to: "ben@l1buildersny.com",
-      from: "ben@l1buildersny.com",
-      replyTo: email,
-      subject: `New Lead: ${name} — ${projectType || "General Inquiry"}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <table cellpadding="8" style="border-collapse:collapse;width:100%">
-          <tr><td><strong>Name</strong></td><td>${name}</td></tr>
-          <tr><td><strong>Email</strong></td><td>${email}</td></tr>
-          <tr><td><strong>Phone</strong></td><td>${phone || "—"}</td></tr>
-          <tr><td><strong>Property Type</strong></td><td>${propertyType || "—"}</td></tr>
-          <tr><td><strong>Project Type</strong></td><td>${projectType || "—"}</td></tr>
-          <tr><td><strong>Referral</strong></td><td>${referral || "—"}</td></tr>
-          <tr><td><strong>Message</strong></td><td>${message || "—"}</td></tr>
-        </table>
-      `,
-    };
+    const resend = new Resend(apiKey);
 
     try {
-      await sgMail.send(msg);
+      await resend.emails.send({
+        from: "L1 Builders <ben@l1buildersny.com>",
+        to: "ben@l1buildersny.com",
+        replyTo: email,
+        subject: `New Lead: ${name} — ${projectType || "General Inquiry"}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <table cellpadding="8" style="border-collapse:collapse;width:100%">
+            <tr><td><strong>Name</strong></td><td>${name}</td></tr>
+            <tr><td><strong>Email</strong></td><td>${email}</td></tr>
+            <tr><td><strong>Phone</strong></td><td>${phone || "—"}</td></tr>
+            <tr><td><strong>Property Type</strong></td><td>${propertyType || "—"}</td></tr>
+            <tr><td><strong>Project Type</strong></td><td>${projectType || "—"}</td></tr>
+            <tr><td><strong>Referral</strong></td><td>${referral || "—"}</td></tr>
+            <tr><td><strong>Message</strong></td><td>${message || "—"}</td></tr>
+          </table>
+        `,
+      });
       return res.json({ success: true });
     } catch (err) {
-      console.error("SendGrid error:", err);
+      console.error("Resend error:", err);
       return res.status(500).json({ error: "Failed to send email." });
     }
   });
