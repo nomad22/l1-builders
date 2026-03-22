@@ -24,6 +24,8 @@ function useInView(threshold = 0.15) {
 export default function ContactSection() {
   const { ref, inView } = useInView();
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -31,15 +33,37 @@ export default function ContactSection() {
     propertyType: "",
     projectType: "",
     message: "",
+    referral: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Failed to send");
+      // Fire GA4 conversion event
+      if (typeof window !== "undefined" && (window as any).gtag) {
+        (window as any).gtag("event", "generate_lead", {
+          event_category: "contact",
+          event_label: form.projectType || "general",
+        });
+      }
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please call or email us directly.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -288,9 +312,31 @@ export default function ContactSection() {
                   />
                 </div>
 
-                <button type="submit" className="btn-primary w-full justify-center">
-                  <span>Send Message</span>
-                  <ArrowRight size={15} className="relative z-10" />
+                <div>
+                  <label
+                    className="block text-white/50 mb-2"
+                    style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase" }}
+                  >
+                    How did you hear about us?
+                  </label>
+                  <input
+                    type="text"
+                    name="referral"
+                    value={form.referral}
+                    onChange={handleChange}
+                    className="w-full bg-[#151A20] border border-white/10 text-white px-4 py-3 focus:outline-none focus:border-[#4A7FA5] transition-colors"
+                    style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem" }}
+                    placeholder="Agent name, Google, referral, etc."
+                  />
+                </div>
+
+                {error && (
+                  <p className="text-red-400 text-sm" style={{ fontFamily: "'Inter', sans-serif" }}>{error}</p>
+                )}
+
+                <button type="submit" disabled={loading} className="btn-primary w-full justify-center disabled:opacity-50">
+                  <span>{loading ? "Sending..." : "Send Message"}</span>
+                  {!loading && <ArrowRight size={15} className="relative z-10" />}
                 </button>
               </form>
             )}
