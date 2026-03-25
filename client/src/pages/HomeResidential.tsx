@@ -397,7 +397,29 @@ function ResContact() {
   const { ref, inView } = useInView();
   const [form, setForm] = useState({ name: "", email: "", phone: "", projectType: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, referral: "" }),
+      });
+      if (!res.ok) throw new Error("Failed to send");
+      if (typeof window !== "undefined" && (window as any).gtag) {
+        (window as any).gtag("event", "generate_lead", { event_category: "contact", event_label: form.projectType || "residential" });
+      }
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please call or email us directly.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="res-contact" className="bg-[#1A1208] py-24 lg:py-32" ref={ref}>
@@ -414,7 +436,7 @@ function ResContact() {
               Tell us about your project. We'll schedule a free in-home consultation and provide a detailed proposal within one week.
             </p>
             <div className="space-y-5">
-              {[[Phone, "(917) 593-9038"], [Mail, "ben@upandup.co"], [MapPin, "Serving Long Island & NYC"]].map(([Icon, text]) => (
+              {[[Phone, "(917) 593-9038"], [Mail, "ben@l1buildersny.com"], [MapPin, "Serving Long Island & NYC"]].map(([Icon, text]) => (
                 <div key={text as string} className="flex items-center gap-3">
                   <div className="w-8 h-8 border border-[#D4A96A]/30 flex items-center justify-center flex-shrink-0">
                     <Icon size={13} className="text-[#D4A96A]" strokeWidth={1.5} />
@@ -473,8 +495,9 @@ function ResContact() {
                     placeholder="Describe your vision, scope, and timeline..."
                   />
                 </div>
-                <button type="submit" className="w-full flex items-center justify-center gap-2.5 py-4 bg-[#D4A96A] text-[#0D0A05] hover:bg-[#C49558] transition-colors" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "0.9375rem", fontWeight: 700, letterSpacing: "0.1em" }}>
-                  REQUEST FREE CONSULTATION <ArrowRight size={15} />
+                {error && <p className="text-red-400 text-sm">{error}</p>}
+                <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2.5 py-4 bg-[#D4A96A] text-[#0D0A05] hover:bg-[#C49558] transition-colors disabled:opacity-50" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "0.9375rem", fontWeight: 700, letterSpacing: "0.1em" }}>
+                  {loading ? "SENDING..." : <>{`REQUEST FREE CONSULTATION`} <ArrowRight size={15} /></>}
                 </button>
               </form>
             )}
