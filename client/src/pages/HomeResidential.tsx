@@ -395,7 +395,7 @@ function ResAbout() {
 // ── Contact ───────────────────────────────────────────────────────────────────
 function ResContact() {
   const { ref, inView } = useInView();
-  const [form, setForm] = useState({ name: "", email: "", phone: "", projectType: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", projectType: "", message: "", referral: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -407,7 +407,7 @@ function ResContact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, referral: "" }),
+        body: JSON.stringify(form),
       });
       if (!res.ok) throw new Error("Failed to send");
       if (typeof window !== "undefined" && (window as any).gtag) {
@@ -436,12 +436,20 @@ function ResContact() {
               Tell us about your project. We'll schedule a free in-home consultation and provide a detailed proposal within one week.
             </p>
             <div className="space-y-5">
-              {[[Phone, "(917) 593-9038"], [Mail, "ben@l1buildersny.com"], [MapPin, "Serving Long Island & NYC"]].map(([Icon, text]) => (
-                <div key={text as string} className="flex items-center gap-3">
+              {[
+                { Icon: Phone, text: "(917) 593-9038", href: "tel:+19175939038" },
+                { Icon: Mail, text: "ben@l1buildersny.com", href: "mailto:ben@l1buildersny.com" },
+                { Icon: MapPin, text: "Serving Long Island & NYC", href: null },
+              ].map(({ Icon, text, href }) => (
+                <div key={text} className="flex items-center gap-3">
                   <div className="w-8 h-8 border border-[#D4A96A]/30 flex items-center justify-center flex-shrink-0">
                     <Icon size={13} className="text-[#D4A96A]" strokeWidth={1.5} />
                   </div>
-                  <span className="text-white/55" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 300 }}>{text as string}</span>
+                  {href ? (
+                    <a href={href} className="text-white/55 hover:text-white/80 transition-colors" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 300 }}>{text}</a>
+                  ) : (
+                    <span className="text-white/55" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 300 }}>{text}</span>
+                  )}
                 </div>
               ))}
             </div>
@@ -453,7 +461,14 @@ function ResContact() {
                   <span className="text-[#0D0A05] text-2xl">✓</span>
                 </div>
                 <h3 className="text-white mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.75rem", fontWeight: 600 }}>Thank You!</h3>
-                <p className="text-white/55" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 300 }}>We'll be in touch within one business day to schedule your free consultation.</p>
+                <p className="text-white/55 mb-5" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 300 }}>We'll be in touch within one business day to schedule your free consultation.</p>
+                <button
+                  onClick={() => { setSubmitted(false); setForm({ name: "", email: "", phone: "", projectType: "", message: "", referral: "" }); }}
+                  className="text-[#D4A96A] hover:text-white transition-colors"
+                  style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.14em" }}
+                >
+                  SUBMIT ANOTHER INQUIRY
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -493,6 +508,17 @@ function ResContact() {
                     className="w-full bg-white/5 border border-white/12 text-white px-4 py-3 focus:outline-none focus:border-[#D4A96A]/50 transition-colors resize-none"
                     style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 300 }}
                     placeholder="Describe your vision, scope, and timeline..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-white/40 mb-1.5" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.14em" }}>HOW DID YOU HEAR ABOUT US?</label>
+                  <input
+                    type="text"
+                    value={form.referral}
+                    onChange={e => setForm({ ...form, referral: e.target.value })}
+                    className="w-full bg-white/5 border border-white/12 text-white px-4 py-3 focus:outline-none focus:border-[#D4A96A]/50 transition-colors"
+                    style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 300 }}
+                    placeholder="Agent name, Google, referral, etc."
                   />
                 </div>
                 {error && <p className="text-red-400 text-sm">{error}</p>}

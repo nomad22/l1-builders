@@ -13,9 +13,7 @@ import { ArrowRight } from "lucide-react";
 const RES_HERO =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663284622640/3uXyTKuuEVEiZ2zueCT5gX/res-hero-bg-JoiFDmDNUK8sbBYFJ4ACi7.webp";
 
-// Reuse the existing commercial hero (NYC brownstone) — CDN URL from original build
-const COM_HERO =
-  "https://private-us-east-1.manuscdn.com/sessionFile/OdumqcUzZmJJLmO8aCf2hn/sandbox/EEIHq2rAnldOJ8OmTdEbVD-img-1_1771874164000_na1fn_bDEtaGVyby1iZw.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvT2R1bXFjVXpabUpKTG1POGFDZjJobi9zYW5kYm94L0VFSUhxMnJBbmxkT0o4T21UZEViVkQtaW1nLTFfMTc3MTg3NDE2NDAwMF9uYTFmbl9iREV0YUdWeWJ5MWlady5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=Bqv2VTjGFJBjz5g~Bw2nt0LQXS0jDZhVqOQUBHNGYUmWMEFPfUJFMhBhqCJXNJNjRl2Xk4DqQfNEGCqLDWFCOkJpFBVqpGFvxZjpQFSQwBMnqVFwvRBXqTnWmCGQVLTaFDOdJMvkiUqQHJq-VHXt0TFJ~qlKkOTFBZEQjzBpJHMGjpHFJGlBXMCkqEBXQMCFqVRJGTqVFHXQMCFqVRJGTqVFHXQMCFqVRJGTqVFHXQMCFqVRJGTqVFHXQMCFqVRJGTqVFHXQ__";
+const COM_HERO = "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80";
 
 export default function Gateway() {
   const [, navigate] = useLocation();
@@ -239,10 +237,10 @@ export default function Gateway() {
       {/* Bottom hint */}
       <div className="absolute bottom-5 left-0 right-0 z-30 flex justify-center pointer-events-none">
         <span
-          className="text-white/30"
-          style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.18em" }}
+          className="text-white/50 lg:text-white/30 animate-pulse lg:animate-none"
+          style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.18em" }}
         >
-          SELECT YOUR PATH
+          TAP TO SELECT YOUR PATH
         </span>
       </div>
     </div>

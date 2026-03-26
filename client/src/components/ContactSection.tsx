@@ -113,10 +113,10 @@ export default function ContactSection() {
             {/* Contact details */}
             <div className="space-y-5 mb-10">
               {[
-                { icon: Phone, label: "Phone", value: "(917) 593-9038" },
-                { icon: Mail, label: "Email", value: "ben@upandup.co" },
-                { icon: MapPin, label: "Service Area", value: "NYC & Long Island" },
-              ].map(({ icon: Icon, label, value }) => (
+                { icon: Phone, label: "Phone", value: "(917) 593-9038", href: "tel:+19175939038" },
+                { icon: Mail, label: "Email", value: "ben@l1buildersny.com", href: "mailto:ben@l1buildersny.com" },
+                { icon: MapPin, label: "Service Area", value: "NYC & Long Island", href: null },
+              ].map(({ icon: Icon, label, value, href }) => (
                 <div key={label} className="flex items-center gap-4">
                   <div className="w-9 h-9 bg-[#4A7FA5]/15 border border-[#4A7FA5]/25 flex items-center justify-center flex-shrink-0">
                     <Icon size={15} className="text-[#4A7FA5]" strokeWidth={1.5} />
@@ -128,12 +128,11 @@ export default function ContactSection() {
                     >
                       {label}
                     </p>
-                    <p
-                      className="text-white/80"
-                      style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 400 }}
-                    >
-                      {value}
-                    </p>
+                    {href ? (
+                      <a href={href} className="text-white/80 hover:text-white transition-colors" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 400 }}>{value}</a>
+                    ) : (
+                      <p className="text-white/80" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", fontWeight: 400 }}>{value}</p>
+                    )}
                   </div>
                 </div>
               ))}
@@ -180,12 +179,19 @@ export default function ContactSection() {
                   Message Received
                 </h3>
                 <p
-                  className="text-white/55"
+                  className="text-white/55 mb-6"
                   style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", lineHeight: 1.7, fontWeight: 300 }}
                 >
                   Thank you for reaching out. A member of our team will contact you
                   within 24 hours to discuss your project.
                 </p>
+                <button
+                  onClick={() => { setSubmitted(false); setForm({ name: "", email: "", phone: "", propertyType: "", projectType: "", message: "", referral: "" }); }}
+                  className="text-[#4A7FA5] hover:text-white transition-colors"
+                  style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.14em" }}
+                >
+                  SUBMIT ANOTHER INQUIRY
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="bg-[#1C2128] p-8 space-y-5">

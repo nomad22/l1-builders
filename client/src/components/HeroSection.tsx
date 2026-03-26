@@ -8,7 +8,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
-const HERO_IMAGE = "https://private-us-east-1.manuscdn.com/sessionFile/OdumqcUzZmJJLmO8aCf2hn/sandbox/EEIHq2rAnldOJ8OmTdEbVD-img-1_1771874157000_na1fn_bDEtaGVyby1iZw.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvT2R1bXFjVXpabUpKTG1POGFDZjJobi9zYW5kYm94L0VFSUhxMnJBbmxkT0o4T21UZEViVkQtaW1nLTFfMTc3MTg3NDE1NzAwMF9uYTFmbl9iREV0YUdWeWJ5MWlady5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=PxmMXZQzaPZRuC8VZUV58PpAWOlvAtlnFF0wT7a~T5KVu0Ad0wq3KN5j0b51~3tdgi6mz2JXTVo9ES0nK2pXcOFBXJaReCyk2hBf0baAQMYtXloZxBGYAApgO21fOW7vIgGjHtu9Ol7RZpI-rt6pZg2T6WdxOshQe9vKYWWvakxZAVSijG~6l3e-EpkIiOiL~U1qXevaIQdu1DvT9S6ussuYrb5T0yqHYEyhRk5ehEqPGSnr~uKqs9aIwIbg3VhjONx9MqL2r6YWA3CjR7oPzGnNWGzLeTgt6fsOevmAerjZXyJ~y7ZDuNGJwonPN~WT5xEkDL4I5PQSqMfKouFIhA__";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1920&q=80";
 
 export default function HeroSection() {
   const [visible, setVisible] = useState(false);

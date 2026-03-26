@@ -84,6 +84,12 @@ export default function Navbar() {
 
             {/* Desktop nav */}
             <div className="hidden lg:flex items-center gap-8">
+              {/* Back to gateway */}
+              <Link href="/">
+                <span className="text-white/35 hover:text-[#4A7FA5] transition-colors cursor-pointer" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.14em" }}>
+                  ← HOME
+                </span>
+              </Link>
               {/* Vertical rule separator */}
               <div className="w-px h-5 bg-[#4A7FA5]/40" />
               {navLinks.map((link) => (
@@ -180,6 +186,11 @@ export default function Navbar() {
           >
             <span>Get a Quote</span>
           </button>
+          <Link href="/" onClick={() => setMobileOpen(false)}>
+            <div className="text-center mt-4 text-white/35 hover:text-white/60 transition-colors cursor-pointer" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.14em" }}>
+              ← BACK TO HOME
+            </div>
+          </Link>
         </div>
       </div>
     </>
