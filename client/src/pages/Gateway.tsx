@@ -10,8 +10,7 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { ArrowRight } from "lucide-react";
 
-const RES_HERO =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663284622640/3uXyTKuuEVEiZ2zueCT5gX/res-hero-bg-JoiFDmDNUK8sbBYFJ4ACi7.webp";
+const RES_HERO = "/res-hero.webp";
 
 const COM_HERO = "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80";
 

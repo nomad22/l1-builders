@@ -11,10 +11,10 @@ import { ArrowRight, ChevronRight, Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import SiteHeader from "@/components/SiteHeader";
 
-const RES_HERO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663284622640/3uXyTKuuEVEiZ2zueCT5gX/res-hero-bg-JoiFDmDNUK8sbBYFJ4ACi7.webp";
-const RES_KITCHEN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663284622640/3uXyTKuuEVEiZ2zueCT5gX/res-kitchen-b8AhWyn2bbLQ28Zb5t8kxh.webp";
-const RES_BATHROOM = "https://d2xsxph8kpxj0f.cloudfront.net/310519663284622640/3uXyTKuuEVEiZ2zueCT5gX/res-bathroom-oDaCSvdRpqxWX46kZFgWDF.webp";
-const RES_LIVING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663284622640/3uXyTKuuEVEiZ2zueCT5gX/res-living-room-fWG4rJeU2kLS7TA2NqiwiK.webp";
+const RES_HERO = "/res-hero.webp";
+const RES_KITCHEN = "/res-kitchen.webp";
+const RES_BATHROOM = "/res-bathroom.webp";
+const RES_LIVING = "/res-living-room.webp";
 
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
