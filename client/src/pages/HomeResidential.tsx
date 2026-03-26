@@ -11,7 +11,7 @@ import { ArrowRight, ChevronRight, Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import SiteHeader from "@/components/SiteHeader";
 
-const RES_HERO = "/heroResi.jpg";
+const RES_HERO = "/res-hero.webp";
 const RES_KITCHEN = "/res-kitchen.webp";
 const RES_BATHROOM = "/res-bathroom.webp";
 const RES_LIVING = "/res-living-room.webp";
