@@ -18,29 +18,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-8 h-8 bg-[#4A7FA5] flex items-center justify-center">
-                <span
-                  className="text-white font-bold text-sm"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}
-                >
-                  L1
-                </span>
-              </div>
-              <div className="flex flex-col">
-                <span
-                  className="text-white font-semibold leading-none"
-                  style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.125rem", letterSpacing: "0.06em" }}
-                >
-                  BUILDERS
-                </span>
-                <span
-                  className="text-[#4A7FA5] leading-none"
-                  style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.5rem", letterSpacing: "0.15em" }}
-                >
-                  BUILT BY INVESTORS
-                </span>
-              </div>
+            <div className="mb-5">
+              <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-8 w-auto" />
             </div>
             <p
               className="text-white/40 max-w-xs"

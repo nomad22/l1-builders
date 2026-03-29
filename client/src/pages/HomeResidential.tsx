@@ -11,7 +11,7 @@ import { ArrowRight, ChevronRight, Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "wouter";
 import SiteHeader from "@/components/SiteHeader";
 
-const RES_HERO = "/res-hero.webp";
+const RES_HERO = "/highResKitchen.png";
 const RES_KITCHEN = "/res-kitchen.webp";
 const RES_BATHROOM = "/res-bathroom.webp";
 const RES_LIVING = "/res-living-room.webp";
@@ -63,15 +63,7 @@ function ResNavbar() {
         <div className="flex items-center justify-between px-6 lg:px-8 py-4">
           {/* Logo */}
           <Link href="/">
-            <div className="flex items-center gap-2.5 cursor-pointer">
-              <div className="w-8 h-8 bg-[#D4A96A] flex items-center justify-center">
-                <span className="text-[#0D0A05] font-bold text-sm" style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}>L1</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-white font-semibold leading-none" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.125rem", letterSpacing: "0.06em" }}>BUILDERS</span>
-                <span className="text-[#D4A96A] leading-none" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.5rem", letterSpacing: "0.15em" }}>RESIDENTIAL</span>
-              </div>
-            </div>
+            <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-8 w-auto" />
           </Link>
           {/* Desktop nav */}
           <div className="hidden lg:flex items-center gap-7">

@@ -10,9 +10,9 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { ArrowRight } from "lucide-react";
 
-const RES_HERO = "/heroResi.jpg";
+const RES_HERO = "/highResKitchen.png";
 
-const COM_HERO = "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80";
+const COM_HERO = "/heroBrownstone.jpg";
 
 export default function Gateway() {
   const [, navigate] = useLocation();
@@ -28,30 +28,7 @@ export default function Gateway() {
         className="absolute top-0 left-0 right-0 z-30 flex items-center justify-center py-6"
         style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 100%)" }}
       >
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-[#4A7FA5] flex items-center justify-center">
-            <span
-              className="text-white font-bold"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1rem", letterSpacing: "0.04em" }}
-            >
-              L1
-            </span>
-          </div>
-          <div className="flex flex-col">
-            <span
-              className="text-white font-semibold leading-none"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.25rem", letterSpacing: "0.08em" }}
-            >
-              BUILDERS
-            </span>
-            <span
-              className="text-[#4A7FA5] leading-none"
-              style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.5rem", letterSpacing: "0.18em" }}
-            >
-              NYC & LONG ISLAND
-            </span>
-          </div>
-        </div>
+        <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-36 w-auto" />
       </div>
 
       {/* Split panels — stacked on mobile, side-by-side on desktop */}
@@ -73,6 +50,7 @@ export default function Gateway() {
             src={RES_HERO}
             alt="Luxury residential renovation"
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/res:scale-105"
+            style={{ objectPosition: "right center", filter: "brightness(1.25)" }}
           />
           {/* Overlay — warm, lighter on hover */}
           <div
@@ -191,7 +169,7 @@ export default function Gateway() {
                 className="text-[#4A7FA5] tracking-widest"
                 style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.22em" }}
               >
-                FOR INVESTORS & DEVELOPERS
+                FOR INVESTORS
               </span>
             </div>
             <h2

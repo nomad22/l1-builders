@@ -60,15 +60,7 @@ export default function CommercialNavbar() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link href="/">
-              <div className="flex items-center gap-2 cursor-pointer">
-                <div className="w-8 h-8 bg-[#4A7FA5] flex items-center justify-center">
-                  <span className="text-white font-bold text-sm leading-none" style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em" }}>L1</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-white font-semibold leading-none tracking-wide" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.125rem", letterSpacing: "0.06em" }}>BUILDERS</span>
-                  <span className="text-[#4A7FA5] leading-none" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.5rem", letterSpacing: "0.15em" }}>BUILT BY INVESTORS</span>
-                </div>
-              </div>
+              <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-8 w-auto" />
             </Link>
 
             {/* Desktop nav */}
@@ -109,12 +101,7 @@ export default function CommercialNavbar() {
       {/* Mobile menu */}
       <div className={`fixed inset-0 z-40 bg-[#1C2128] flex flex-col transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}>
         <div className="flex items-center justify-between h-16 px-6 border-b border-white/10">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-[#4A7FA5] flex items-center justify-center">
-              <span className="text-white font-bold text-xs" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>L1</span>
-            </div>
-            <span className="text-white font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.06em" }}>BUILDERS</span>
-          </div>
+          <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-7 w-auto" />
           <button className="text-white p-1" onClick={() => setMobileOpen(false)}><X size={22} /></button>
         </div>
         <div className="flex flex-col gap-1 p-6 mt-4">

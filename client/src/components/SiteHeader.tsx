@@ -123,15 +123,7 @@ export default function SiteHeader({ variant, navLinks = [], onQuoteClick }: Sit
 
             {/* Logo */}
             <Link href={variant === "residential" ? "/residential" : "/commercial"}>
-              <div className="flex items-center gap-2.5 cursor-pointer">
-                <div className="w-8 h-8 flex items-center justify-center" style={{ background: accent }}>
-                  <span className="font-bold text-sm leading-none" style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.02em", color: variant === "residential" ? "#0D0A05" : "#fff" }}>L1</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-white font-semibold leading-none" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.125rem", letterSpacing: "0.06em" }}>BUILDERS</span>
-                  <span className="leading-none" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.5rem", letterSpacing: "0.15em", color: accent }}>{SUBLABEL[variant]}</span>
-                </div>
-              </div>
+              <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-8 w-auto" />
             </Link>
 
             {/* Desktop nav */}
@@ -258,12 +250,7 @@ export default function SiteHeader({ variant, navLinks = [], onQuoteClick }: Sit
       >
         {/* Mobile header */}
         <div className="flex items-center justify-between h-16 px-6 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 flex items-center justify-center" style={{ background: accent }}>
-              <span className="font-bold text-xs" style={{ fontFamily: "'Barlow Condensed', sans-serif", color: variant === "residential" ? "#0D0A05" : "#fff" }}>L1</span>
-            </div>
-            <span className="text-white font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "0.06em" }}>BUILDERS</span>
-          </div>
+          <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-7 w-auto" />
           <button className="text-white p-1" onClick={() => setMobileOpen(false)}><X size={22} /></button>
         </div>
 
