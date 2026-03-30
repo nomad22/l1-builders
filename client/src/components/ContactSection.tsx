@@ -31,9 +31,8 @@ export default function ContactSection() {
     email: "",
     phone: "",
     propertyType: "",
-    projectType: "",
+    budget: "",
     message: "",
-    referral: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -67,20 +66,10 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="bg-[#151A20] py-24 lg:py-32" ref={ref}>
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+    <section id="contact" className="bg-[#151A20] py-[60px] lg:py-[120px]" ref={ref}>
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         {/* Section header */}
         <div className="mb-16">
-          <div
-            className={`flex items-center gap-3 mb-4 transition-all duration-600 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-          >
-            <span
-              className="text-[#4A7FA5]"
-              style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.18em" }}
-            >
-              — 07 / GET IN TOUCH
-            </span>
-          </div>
           <h2
             className={`text-white transition-all duration-600 delay-100 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
             style={{
@@ -115,7 +104,7 @@ export default function ContactSection() {
               {[
                 { icon: Phone, label: "Phone", value: "(917) 593-9038", href: "tel:+19175939038" },
                 { icon: Mail, label: "Email", value: "ben@l1buildersny.com", href: "mailto:ben@l1buildersny.com" },
-                { icon: MapPin, label: "Service Area", value: "NYC & Long Island", href: null },
+                { icon: MapPin, label: "Service Area", value: "NYC", href: null },
               ].map(({ icon: Icon, label, value, href }) => (
                 <div key={label} className="flex items-center gap-4">
                   <div className="w-9 h-9 bg-[#4A7FA5]/15 border border-[#4A7FA5]/25 flex items-center justify-center flex-shrink-0">
@@ -186,7 +175,7 @@ export default function ContactSection() {
                   within 24 hours to discuss your project.
                 </p>
                 <button
-                  onClick={() => { setSubmitted(false); setForm({ name: "", email: "", phone: "", propertyType: "", projectType: "", message: "", referral: "" }); }}
+                  onClick={() => { setSubmitted(false); setForm({ name: "", email: "", phone: "", propertyType: "", budget: "", message: "" }); }}
                   className="text-[#4A7FA5] hover:text-white transition-colors"
                   style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.14em" }}
                 >
@@ -270,8 +259,12 @@ export default function ContactSection() {
                       <option value="sfr">Single Family</option>
                       <option value="2-4">2–4 Family</option>
                       <option value="multifamily">Multifamily (5–50 units)</option>
-                      <option value="commercial">Commercial</option>
                       <option value="condo">Condo / Co-op</option>
+                      <option value="office">Office</option>
+                      <option value="retail">Retail</option>
+                      <option value="medical">Medical</option>
+                      <option value="restaurant">Restaurant</option>
+                      <option value="hotel">Hotel</option>
                     </select>
                   </div>
                 </div>
@@ -281,22 +274,19 @@ export default function ContactSection() {
                     className="block text-white/50 mb-2"
                     style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase" }}
                   >
-                    Project Type
+                    Budget
                   </label>
                   <select
-                    name="projectType"
-                    value={form.projectType}
+                    name="budget"
+                    value={form.budget}
                     onChange={handleChange}
                     className="w-full bg-[#151A20] border border-white/10 text-white/80 px-4 py-3 focus:outline-none focus:border-[#4A7FA5] transition-colors"
                     style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem" }}
                   >
-                    <option value="">Select project type</option>
-                    <option value="value-add">Value-Add Renovation</option>
-                    <option value="systems">Building Systems Upgrade</option>
-                    <option value="capital">Capital Improvements</option>
-                    <option value="turnover">Turnover / Repositioning</option>
-                    <option value="gut">Gut Renovation</option>
-                    <option value="other">Other</option>
+                    <option value="">Select a budget range</option>
+                    {["<$2,500", "$2,500 – $10,000", "$10,000 – $50,000", "$50,000 – $100,000", "$100,000 – $250,000", "$250,000+"].map(o => (
+                      <option key={o} value={o}>{o}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -315,24 +305,6 @@ export default function ContactSection() {
                     className="w-full bg-[#151A20] border border-white/10 text-white px-4 py-3 focus:outline-none focus:border-[#4A7FA5] transition-colors resize-none"
                     style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem" }}
                     placeholder="Tell us about your property, investment goals, and project scope..."
-                  />
-                </div>
-
-                <div>
-                  <label
-                    className="block text-white/50 mb-2"
-                    style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.14em", textTransform: "uppercase" }}
-                  >
-                    How did you hear about us?
-                  </label>
-                  <input
-                    type="text"
-                    name="referral"
-                    value={form.referral}
-                    onChange={handleChange}
-                    className="w-full bg-[#151A20] border border-white/10 text-white px-4 py-3 focus:outline-none focus:border-[#4A7FA5] transition-colors"
-                    style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem" }}
-                    placeholder="Agent name, Google, referral, etc."
                   />
                 </div>
 

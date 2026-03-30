@@ -28,7 +28,7 @@ function useInView(threshold = 0.1) {
 
 const ACCENT_COLORS = {
   blue: "#4A7FA5",
-  gold: "#D4A96A",
+  gold: "#C8963E",
 };
 
 export default function ServicesLanding() {
@@ -46,7 +46,7 @@ export default function ServicesLanding() {
         <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(10,7,3,0.92) 0%, rgba(10,7,3,0.6) 60%, rgba(10,7,3,0.25) 100%)" }} />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,7,3,0.75) 0%, transparent 50%)" }} />
 
-        <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-8 pb-14 w-full">
+        <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-8 pb-14 w-full">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 mb-6">
             <Link href="/commercial">
@@ -70,8 +70,8 @@ export default function ServicesLanding() {
       </section>
 
       {/* ── Stats strip ── */}
-      <div className="bg-[#1A1208] py-5">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+      <div className="bg-[#1A1A0F] py-5">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-8 lg:gap-16">
             {[["11", "Trades Self-Performed"], ["1,000+", "Projects Completed"], ["40+", "Years Experience"], ["NYC & LI", "Licensed & Insured"]].map(([val, label]) => (
               <div key={label} className="flex items-center gap-3">
@@ -85,10 +85,10 @@ export default function ServicesLanding() {
 
       {/* ── Services Grid ── */}
       <section className="bg-[#FAFAF7] py-20 lg:py-28" ref={gridRef}>
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="mb-12">
             <p className="mb-3" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.2em", color: "#4A7FA5" }}>— 11 SERVICES</p>
-            <h2 className="text-[#1A1208]" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.0, letterSpacing: "-0.01em" }}>
+            <h2 className="text-[#1A1A0F]" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.0, letterSpacing: "-0.01em" }}>
               Our Full Scope of Work
             </h2>
           </div>
@@ -116,7 +116,7 @@ export default function ServicesLanding() {
 
                     {/* Label */}
                     <h3
-                      className="text-[#1A1208] mb-2 group-hover:text-[#0D0A05] transition-colors"
+                      className="text-[#1A1A0F] mb-2 group-hover:text-[#0D0A05] transition-colors"
                       style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.375rem", fontWeight: 700, letterSpacing: "0.01em" }}
                     >
                       {svc.label}
@@ -145,8 +145,8 @@ export default function ServicesLanding() {
       </section>
 
       {/* ── CTA Banner ── */}
-      <section className="bg-[#1A1208] py-20 lg:py-24" ref={ctaRef}>
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+      <section className="bg-[#1A1A0F] py-20 lg:py-24" ref={ctaRef}>
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className={`flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 transition-all duration-600 ${ctaInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             <div>
               <p className="mb-3" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.2em", color: "#4A7FA5" }}>— READY TO START?</p>
@@ -166,7 +166,7 @@ export default function ServicesLanding() {
               </Link>
               <Link href="/residential">
                 <div
-                  className="flex items-center gap-2.5 px-8 py-4 cursor-pointer border transition-colors hover:border-[#D4A96A] hover:text-[#D4A96A]"
+                  className="flex items-center gap-2.5 px-8 py-4 cursor-pointer border transition-colors hover:border-[#C8963E] hover:text-[#C8963E]"
                   style={{ borderColor: "rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.55)", fontFamily: "'Barlow Condensed', sans-serif", fontSize: "0.9375rem", fontWeight: 700, letterSpacing: "0.1em" }}
                 >
                   RESIDENTIAL SERVICES

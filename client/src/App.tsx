@@ -11,6 +11,7 @@ import CaseStudies from "./pages/CaseStudies";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import ServicePage from "./pages/ServicePage";
 import ServicesLanding from "./pages/ServicesLanding";
+import OurWork from "./pages/OurWork";
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
 
       {/* Residential path */}
       <Route path="/residential" component={HomeResidential} />
+      <Route path="/our-work" component={OurWork} />
 
       {/* Commercial / Investor path */}
       <Route path="/commercial" component={HomeCommercial} />

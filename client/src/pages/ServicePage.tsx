@@ -59,7 +59,7 @@ export default function ServicePage() {
     );
   }
 
-  const accent = service.accentColor === "gold" ? "#D4A96A" : "#4A7FA5";
+  const accent = service.accentColor === "gold" ? "#C8963E" : "#4A7FA5";
   const accentDark = service.accentColor === "gold" ? "#0D0A05" : "#fff";
   const heroImg = SERVICE_IMAGES[service.slug] || SERVICE_IMAGES["cleaning"];
 
@@ -88,7 +88,7 @@ export default function ServicePage() {
         <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(10,7,3,0.88) 0%, rgba(10,7,3,0.55) 55%, rgba(10,7,3,0.2) 100%)" }} />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,7,3,0.7) 0%, transparent 50%)" }} />
 
-        <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-8 pb-14 w-full">
+        <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-8 pb-14 w-full">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 mb-6">
             <Link href="/commercial">
@@ -119,10 +119,10 @@ export default function ServicePage() {
 
       {/* ── Highlights ── */}
       <section className="bg-[#FAFAF7] py-20 lg:py-28" ref={highlightsRef}>
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className={`mb-12 transition-all duration-600 ${highlightsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             <p className="mb-3" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.2em", color: accent }}>— WHAT WE OFFER</p>
-            <h2 className="text-[#1A1208]" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.0, letterSpacing: "-0.01em" }}>
+            <h2 className="text-[#1A1A0F]" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.0, letterSpacing: "-0.01em" }}>
               Our {service.label} Services
             </h2>
           </div>
@@ -133,7 +133,7 @@ export default function ServicePage() {
                 className={`bg-white p-7 border border-[#EDE9E0] hover:shadow-md transition-all duration-400 ${highlightsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                 style={{ transitionDelay: `${i * 80}ms`, borderTop: `2px solid ${accent}` }}
               >
-                <h3 className="text-[#1A1208] mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.25rem", fontWeight: 600 }}>{h.title}</h3>
+                <h3 className="text-[#1A1A0F] mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.25rem", fontWeight: 600 }}>{h.title}</h3>
                 <p className="text-[#5C5040]" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, fontWeight: 300 }}>{h.body}</p>
               </div>
             ))}
@@ -143,11 +143,11 @@ export default function ServicePage() {
 
       {/* ── Scope of Work ── */}
       <section className="bg-white py-20 lg:py-28" ref={scopeRef}>
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div className={`transition-all duration-600 ${scopeInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
               <p className="mb-3" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.2em", color: accent }}>— SCOPE OF WORK</p>
-              <h2 className="text-[#1A1208] mb-6" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.0, letterSpacing: "-0.01em" }}>
+              <h2 className="text-[#1A1A0F] mb-6" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.0, letterSpacing: "-0.01em" }}>
                 What's Included
               </h2>
               <p className="text-[#5C5040] mb-8" style={{ fontFamily: "'Inter', sans-serif", fontSize: "1rem", lineHeight: 1.8, fontWeight: 300 }}>
@@ -170,7 +170,7 @@ export default function ServicePage() {
             {/* Why L1 panel */}
             <div
               className={`p-8 lg:p-10 transition-all duration-600 delay-200 ${scopeInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}
-              style={{ background: "#1A1208" }}
+              style={{ background: "#1A1A0F" }}
             >
               <p className="mb-3" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.18em", color: accent }}>— WHY L1 BUILDERS</p>
               <h3 className="text-white mb-5" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.75rem", fontWeight: 600, lineHeight: 1.1 }}>
@@ -200,8 +200,8 @@ export default function ServicePage() {
       </section>
 
       {/* ── Contact / Quote Form ── */}
-      <section id="svc-contact" className="bg-[#1A1208] py-20 lg:py-28" ref={contactRef}>
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+      <section id="svc-contact" className="bg-[#1A1A0F] py-20 lg:py-28" ref={contactRef}>
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div className={`transition-all duration-600 ${contactInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
               <p className="mb-4" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.2em", color: accent }}>— REQUEST A QUOTE</p>
@@ -229,14 +229,14 @@ export default function ServicePage() {
                   </div>
                 </a>
                 <a
-                  href="mailto:ben@upandup.co"
+                  href="mailto:ben@l1buildersny.com"
                   className="flex items-center gap-3 group"
                 >
                   <div className="w-8 h-8 flex items-center justify-center flex-shrink-0" style={{ background: `${accent}20` }}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: accent }}><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                   </div>
                   <div>
-                    <p className="text-white/80 group-hover:text-white transition-colors" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.125rem", fontWeight: 600, letterSpacing: "0.02em" }}>ben@upandup.co</p>
+                    <p className="text-white/80 group-hover:text-white transition-colors" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.125rem", fontWeight: 600, letterSpacing: "0.02em" }}>ben@l1buildersny.com</p>
                     <p className="text-white/30" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.5rem", letterSpacing: "0.1em" }}>REPLY WITHIN 1 BUSINESS DAY</p>
                   </div>
                 </a>
@@ -315,7 +315,7 @@ export default function ServicePage() {
 
       {/* ── Service Navigation ── */}
       <section className="bg-[#0D0A05] py-10 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 flex items-center justify-between">
           {prevService ? (
             <Link href={`/services/${prevService.slug}`}>
               <div className="flex items-center gap-3 cursor-pointer group">

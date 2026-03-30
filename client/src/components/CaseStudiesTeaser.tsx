@@ -28,21 +28,11 @@ export default function CaseStudiesTeaser() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="case-studies" className="bg-white py-24 lg:py-32" ref={ref}>
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+    <section id="case-studies" className="bg-white py-[60px] lg:py-[120px]" ref={ref}>
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         {/* Section header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-14 gap-6">
           <div>
-            <div
-              className={`flex items-center gap-3 mb-4 transition-all duration-600 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-            >
-              <span
-                className="text-[#4A7FA5]"
-                style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.18em" }}
-              >
-                — 03 / CASE STUDIES
-              </span>
-            </div>
             <h2
               className={`text-[#0D1117] transition-all duration-600 delay-100 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
               style={{

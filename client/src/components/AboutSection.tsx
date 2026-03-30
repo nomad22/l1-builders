@@ -20,7 +20,7 @@ const credentials = [
   },
   {
     icon: MapPin,
-    label: "NYC & Long Island",
+    label: "NYC",
     sub: "Projects across all five boroughs",
   },
   {
@@ -57,20 +57,10 @@ export default function AboutSection() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="about" className="bg-white py-24 lg:py-32" ref={ref}>
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+    <section id="about" className="bg-white py-[60px] lg:py-[120px]" ref={ref}>
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         {/* Section header */}
         <div className="mb-16">
-          <div
-            className={`flex items-center gap-3 mb-4 transition-all duration-600 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-          >
-            <span
-              className="text-[#4A7FA5]"
-              style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.18em" }}
-            >
-              — 06 / ABOUT L1 BUILDERS
-            </span>
-          </div>
           <h2
             className={`text-[#0D1117] transition-all duration-600 delay-100 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
             style={{
@@ -93,21 +83,13 @@ export default function AboutSection() {
             className={`transition-all duration-600 delay-200 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
           >
             <p
-              className="text-[#3D4A5C] mb-8"
+              className="text-[#3D4A5C] mb-10"
               style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.0625rem", lineHeight: 1.75, fontWeight: 300 }}
             >
               L1 Builders is a vertically integrated construction firm led by experienced
               real estate operators. With over 1,000 homes renovated and sold nationwide,
               we specialize in value-add renovations that increase income, resale value,
               and long-term asset performance for property owners.
-            </p>
-            <p
-              className="text-[#3D4A5C] mb-10"
-              style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.0625rem", lineHeight: 1.75, fontWeight: 300 }}
-            >
-              Our team brings together licensed brokers, experienced investors, and
-              skilled tradespeople under one roof — giving you a construction partner
-              who understands your financial objectives, not just your blueprints.
             </p>
 
             {/* Credentials grid */}

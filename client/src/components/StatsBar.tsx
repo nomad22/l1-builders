@@ -76,7 +76,7 @@ export default function StatsBar() {
 
   return (
     <div ref={ref} className="bg-[#1C2128]">
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
           {stats.map((stat) => (
             <StatItem key={stat.label} {...stat} active={active} />

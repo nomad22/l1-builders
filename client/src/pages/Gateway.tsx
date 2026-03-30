@@ -2,8 +2,7 @@
  * L1 Builders — Persona Gateway Page (/)
  * Design: Full-screen split layout. Left panel = Residential (warm, light, elegant).
  * Right panel = Commercial/Investor (dark, architectural, technical).
- * On hover each panel expands. On click routes to the respective homepage.
- * Consistent with Technical Modernism design system.
+ * On hover each panel expands. On click: selected panel fills screen → fade out → navigate.
  */
 
 import { useState } from "react";
@@ -11,24 +10,37 @@ import { useLocation } from "wouter";
 import { ArrowRight } from "lucide-react";
 
 const RES_HERO = "/highResKitchen.png";
-
 const COM_HERO = "/heroBrownstone.jpg";
 
 export default function Gateway() {
   const [, navigate] = useLocation();
   const [hovered, setHovered] = useState<"residential" | "commercial" | null>(null);
+  const [exiting, setExiting] = useState<"residential" | "commercial" | null>(null);
 
-  const goResidential = () => navigate("/residential");
-  const goCommercial = () => navigate("/commercial");
+  const handleNav = (side: "residential" | "commercial", path: string) => {
+    if (exiting) return;
+    setExiting(side);
+    setHovered(side);
+    // Navigate as the panel expansion peaks
+    setTimeout(() => navigate(path), 600);
+  };
+
+  // Flex values: during exit, winner fills screen, loser collapses
+  const resFlex = exiting === "residential" ? "3" : exiting === "commercial" ? "0" : hovered === "residential" ? "1.55" : hovered === "commercial" ? "0.55" : "1";
+  const comFlex = exiting === "commercial" ? "3" : exiting === "residential" ? "0" : hovered === "commercial" ? "1.55" : hovered === "residential" ? "0.55" : "1";
+  const flexTransition = exiting
+    ? "flex 0.65s cubic-bezier(0.77,0,0.175,1)"
+    : "flex 0.55s cubic-bezier(0.77,0,0.175,1)";
 
   return (
-    <div className="h-screen w-screen overflow-hidden flex flex-col">
+    <div className="h-screen w-screen overflow-hidden flex flex-col relative">
+
       {/* Logo bar */}
       <div
         className="absolute top-0 left-0 right-0 z-30 flex items-center justify-center py-6"
         style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 100%)" }}
       >
-        <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-36 w-auto" />
+        <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-22 w-auto" />
       </div>
 
       {/* Split panels — stacked on mobile, side-by-side on desktop */}
@@ -37,22 +49,24 @@ export default function Gateway() {
         {/* ── RESIDENTIAL PANEL ── */}
         <div
           className="relative flex-1 cursor-pointer overflow-hidden group/res"
-          style={{
-            flex: hovered === "residential" ? "1.55" : hovered === "commercial" ? "0.55" : "1",
-            transition: "flex 0.55s cubic-bezier(0.77,0,0.175,1)",
-          }}
-          onClick={goResidential}
-          onMouseEnter={() => setHovered("residential")}
-          onMouseLeave={() => setHovered(null)}
+          style={{ flex: resFlex, transition: flexTransition }}
+          onClick={() => handleNav("residential", "/residential")}
+          onMouseEnter={() => { if (!exiting) setHovered("residential"); }}
+          onMouseLeave={() => { if (!exiting) setHovered(null); }}
         >
           {/* Background image */}
           <img
             src={RES_HERO}
             alt="Luxury residential renovation"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/res:scale-105"
-            style={{ objectPosition: "right center", filter: "brightness(1.25)" }}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              objectPosition: "right center",
+              filter: "brightness(1.25)",
+              transform: exiting === "residential" ? "scale(1.08)" : hovered === "residential" ? "scale(1.05)" : "scale(1)",
+              transition: "transform 0.7s ease",
+            }}
           />
-          {/* Overlay — warm, lighter on hover */}
+          {/* Overlay */}
           <div
             className="absolute inset-0 transition-opacity duration-500"
             style={{
@@ -60,29 +74,24 @@ export default function Gateway() {
               opacity: hovered === "commercial" ? 0.9 : 1,
             }}
           />
-          {/* Warm gold tint layer */}
+          {/* Warm gold tint */}
           <div
-            className="absolute inset-0 transition-opacity duration-500"
-            style={{
-              background: "linear-gradient(to top, rgba(166,124,82,0.18) 0%, transparent 60%)",
-            }}
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(to top, rgba(166,124,82,0.18) 0%, transparent 60%)" }}
           />
 
           {/* Content */}
-          <div className="relative z-10 h-full flex flex-col justify-end p-8 lg:p-14">
-            <div
-              className="mb-3 transition-all duration-400"
-              style={{ opacity: hovered === "commercial" ? 0.4 : 1 }}
-            >
-              <span
-                className="text-[#D4A96A] tracking-widest"
-                style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.22em" }}
-              >
+          <div
+            className="relative z-10 h-full flex flex-col justify-end p-8 lg:p-14 transition-opacity duration-300"
+            style={{ opacity: exiting === "commercial" ? 0 : 1 }}
+          >
+            <div className="mb-3" style={{ opacity: hovered === "commercial" ? 0.4 : 1, transition: "opacity 0.4s" }}>
+              <span className="text-[#C8963E]" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.22em" }}>
                 FOR HOMEOWNERS
               </span>
             </div>
             <h2
-              className="text-white mb-4 transition-all duration-400"
+              className="text-white mb-4"
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
                 fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
@@ -90,35 +99,37 @@ export default function Gateway() {
                 lineHeight: 0.95,
                 letterSpacing: "-0.01em",
                 opacity: hovered === "commercial" ? 0.5 : 1,
+                transition: "opacity 0.4s",
               }}
             >
               Residential
               <br />
-              <span style={{ color: "#D4A96A" }}>Renovations.</span>
+              <span style={{ color: "#C8963E" }}>Renovations.</span>
             </h2>
             <p
-              className="text-white/70 mb-8 max-w-xs transition-all duration-400"
+              className="text-white/70 mb-8 max-w-xs"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.9375rem",
                 lineHeight: 1.7,
                 fontWeight: 300,
                 opacity: hovered === "commercial" ? 0.3 : 1,
+                transition: "opacity 0.4s",
               }}
             >
-              Kitchens, bathrooms, full-home renovations, and additions — crafted to the highest standard for discerning homeowners on Long Island and in NYC.
+              Kitchens, bathrooms, full-home renovations, ADUs and more — done right, on budget, and on time.
             </p>
             <button
-              className="self-start flex items-center gap-3 px-7 py-3.5 border border-[#D4A96A] text-[#D4A96A] hover:bg-[#D4A96A] hover:text-[#0D0A05] transition-all duration-300 group/btn"
+              className="self-start flex items-center gap-3 px-7 py-3.5 border border-[#C8963E] text-[#C8963E] hover:bg-[#C8963E] hover:text-[#0D0A05] transition-all duration-300 group/btn"
               style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "0.875rem", fontWeight: 600, letterSpacing: "0.1em" }}
-              onClick={(e) => { e.stopPropagation(); goResidential(); }}
+              onClick={(e) => { e.stopPropagation(); handleNav("residential", "/residential"); }}
             >
               EXPLORE RESIDENTIAL
               <ArrowRight size={14} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
             </button>
           </div>
 
-          {/* Right-edge divider line (desktop only) */}
+          {/* Right-edge divider line */}
           <div
             className="hidden lg:block absolute right-0 top-0 bottom-0 w-px z-20"
             style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.25), transparent)" }}
@@ -128,24 +139,23 @@ export default function Gateway() {
         {/* ── COMMERCIAL / INVESTOR PANEL ── */}
         <div
           className="relative flex-1 cursor-pointer overflow-hidden group/com"
-          style={{
-            flex: hovered === "commercial" ? "1.55" : hovered === "residential" ? "0.55" : "1",
-            transition: "flex 0.55s cubic-bezier(0.77,0,0.175,1)",
-          }}
-          onClick={goCommercial}
-          onMouseEnter={() => setHovered("commercial")}
-          onMouseLeave={() => setHovered(null)}
+          style={{ flex: comFlex, transition: flexTransition }}
+          onClick={() => handleNav("commercial", "/commercial")}
+          onMouseEnter={() => { if (!exiting) setHovered("commercial"); }}
+          onMouseLeave={() => { if (!exiting) setHovered(null); }}
         >
           {/* Background image */}
           <div
-            className="absolute inset-0 transition-transform duration-700 group-hover/com:scale-105"
+            className="absolute inset-0"
             style={{
               backgroundImage: `url(${COM_HERO})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
+              transform: exiting === "commercial" ? "scale(1.08)" : hovered === "commercial" ? "scale(1.05)" : "scale(1)",
+              transition: "transform 0.7s ease",
             }}
           />
-          {/* Overlay — darker, cooler */}
+          {/* Overlay */}
           <div
             className="absolute inset-0 transition-opacity duration-500"
             style={{
@@ -153,27 +163,24 @@ export default function Gateway() {
               opacity: hovered === "residential" ? 0.95 : 1,
             }}
           />
-          {/* Steel-blue tint layer */}
+          {/* Steel-blue tint */}
           <div
             className="absolute inset-0"
             style={{ background: "linear-gradient(to top, rgba(74,127,165,0.15) 0%, transparent 60%)" }}
           />
 
           {/* Content */}
-          <div className="relative z-10 h-full flex flex-col justify-end p-8 lg:p-14">
-            <div
-              className="mb-3 transition-all duration-400"
-              style={{ opacity: hovered === "residential" ? 0.4 : 1 }}
-            >
-              <span
-                className="text-[#4A7FA5] tracking-widest"
-                style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.22em" }}
-              >
+          <div
+            className="relative z-10 h-full flex flex-col justify-end p-8 lg:p-14 transition-opacity duration-300"
+            style={{ opacity: exiting === "residential" ? 0 : 1 }}
+          >
+            <div className="mb-3" style={{ opacity: hovered === "residential" ? 0.4 : 1, transition: "opacity 0.4s" }}>
+              <span className="text-[#4A7FA5]" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.22em" }}>
                 FOR INVESTORS
               </span>
             </div>
             <h2
-              className="text-white mb-4 transition-all duration-400"
+              className="text-white mb-4"
               style={{
                 fontFamily: "'Barlow Condensed', sans-serif",
                 fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
@@ -181,6 +188,7 @@ export default function Gateway() {
                 lineHeight: 0.95,
                 letterSpacing: "-0.01em",
                 opacity: hovered === "residential" ? 0.5 : 1,
+                transition: "opacity 0.4s",
               }}
             >
               Investment
@@ -188,13 +196,14 @@ export default function Gateway() {
               <span style={{ color: "#4A7FA5" }}>Construction.</span>
             </h2>
             <p
-              className="text-white/70 mb-8 max-w-xs transition-all duration-400"
+              className="text-white/70 mb-8 max-w-xs"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.9375rem",
                 lineHeight: 1.7,
                 fontWeight: 300,
                 opacity: hovered === "residential" ? 0.3 : 1,
+                transition: "opacity 0.4s",
               }}
             >
               Value-add renovations, BRRR packages, multifamily repositioning, and capital improvements — built by investors, designed for ROI.
@@ -202,7 +211,7 @@ export default function Gateway() {
             <button
               className="self-start flex items-center gap-3 px-7 py-3.5 border border-[#4A7FA5] text-[#4A7FA5] hover:bg-[#4A7FA5] hover:text-white transition-all duration-300 group/btn"
               style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "0.875rem", fontWeight: 600, letterSpacing: "0.1em" }}
-              onClick={(e) => { e.stopPropagation(); goCommercial(); }}
+              onClick={(e) => { e.stopPropagation(); handleNav("commercial", "/commercial"); }}
             >
               EXPLORE INVESTOR
               <ArrowRight size={14} className="transition-transform duration-300 group-hover/btn:translate-x-1" />

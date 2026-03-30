@@ -97,43 +97,24 @@ export default function ServicesSection() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="services" className="bg-[#F5F7FA] py-24 lg:py-32" ref={ref}>
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+    <section id="services" className="bg-[#F5F7FA] py-[60px] lg:py-[120px]" ref={ref}>
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         {/* Section header */}
         <div className="mb-16">
-          <div
-            className={`flex items-center gap-3 mb-4 transition-all duration-600 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+          <h2
+            className={`text-[#0D1117] transition-all duration-600 delay-100 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+            style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
+              fontWeight: 700,
+              lineHeight: 1.0,
+              letterSpacing: "-0.01em",
+            }}
           >
-            <span
-              className="text-[#4A7FA5]"
-              style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.18em" }}
-            >
-              — 04 / SERVICES
-            </span>
-          </div>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <h2
-              className={`text-[#0D1117] transition-all duration-600 delay-100 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-              style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
-                fontWeight: 700,
-                lineHeight: 1.0,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              Full-Scope Construction
-              <br />
-              <span style={{ color: "#4A7FA5" }}>for Property Investors.</span>
-            </h2>
-            <p
-              className={`text-[#52606D] max-w-sm transition-all duration-600 delay-200 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-              style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", lineHeight: 1.7, fontWeight: 300 }}
-            >
-              From single-unit turnover to full building repositioning — one contract,
-              one team, full accountability.
-            </p>
-          </div>
+            Full-Scope Construction
+            <br />
+            <span style={{ color: "#4A7FA5" }}>for Property Investors.</span>
+          </h2>
         </div>
 
         {/* Service cards grid */}
@@ -188,12 +169,6 @@ export default function ServicesSection() {
                   >
                     {service.title}
                   </h3>
-                  <p
-                    className="text-[#52606D] mb-5"
-                    style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, fontWeight: 300 }}
-                  >
-                    {service.description}
-                  </p>
                   <ul className="space-y-2">
                     {service.items.map((item) => (
                       <li key={item} className="flex items-center gap-2.5">

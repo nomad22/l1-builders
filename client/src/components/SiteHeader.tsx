@@ -6,7 +6,7 @@
  *
  * Props:
  *  variant: "residential" | "commercial"
- *    - residential: gold (#D4A96A) accent, "RESIDENTIAL" sub-label
+ *    - residential: gold (#C8963E) accent, "RESIDENTIAL" sub-label
  *    - commercial:  steel-blue (#4A7FA5) accent, "BUILT BY INVESTORS" sub-label
  */
 
@@ -24,7 +24,7 @@ interface SiteHeaderProps {
 }
 
 const ACCENT = {
-  residential: "#D4A96A",
+  residential: "#C8963E",
   commercial: "#4A7FA5",
 };
 
@@ -72,8 +72,12 @@ export default function SiteHeader({ variant, navLinks = [], onQuoteClick }: Sit
 
   const scrollTo = (href: string) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith("/")) {
+      navigate(href);
+    } else {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const handleQuote = () => {
@@ -102,13 +106,13 @@ export default function SiteHeader({ variant, navLinks = [], onQuoteClick }: Sit
           className="hidden lg:flex items-center justify-between px-8 py-1.5"
           style={{ background: "rgba(0,0,0,0.35)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
         >
-          <span className="text-white/30" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.16em" }}>
-            NYC & LONG ISLAND — LICENSED & INSURED
+          <span className="text-white/30" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.16em" }}>
+            LICENSED & INSURED GENERAL CONTRACTORS - New York
           </span>
           <Link href={SWITCH_HREF[variant]}>
             <span
               className="transition-colors cursor-pointer"
-              style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.14em", color: `${accent}80` }}
+              style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.14em", color: accent }}
               onMouseEnter={e => (e.currentTarget.style.color = accent)}
               onMouseLeave={e => (e.currentTarget.style.color = `${accent}80`)}
             >
@@ -118,12 +122,12 @@ export default function SiteHeader({ variant, navLinks = [], onQuoteClick }: Sit
         </div>
 
         {/* Main nav bar */}
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-[4.5rem]">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-[88px]">
 
             {/* Logo */}
-            <Link href={variant === "residential" ? "/residential" : "/commercial"}>
-              <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-8 w-auto" />
+            <Link href="/">
+              <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-22 w-auto" />
             </Link>
 
             {/* Desktop nav */}
@@ -135,8 +139,8 @@ export default function SiteHeader({ variant, navLinks = [], onQuoteClick }: Sit
                 <button
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
-                  className="relative text-white/65 hover:text-white transition-colors group"
-                  style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.14em" }}
+                  className="relative text-white/80 hover:text-white transition-colors group"
+                  style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.12em" }}
                 >
                   {link.label}
                   <span className="absolute -bottom-0.5 left-0 w-0 h-px transition-all duration-300 group-hover:w-full" style={{ background: accent }} />
@@ -146,8 +150,8 @@ export default function SiteHeader({ variant, navLinks = [], onQuoteClick }: Sit
               {/* Services dropdown trigger */}
               <div className="relative" ref={dropdownRef}>
                 <button
-                  className="flex items-center gap-1.5 text-white/65 hover:text-white transition-colors group"
-                  style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.14em" }}
+                  className="flex items-center gap-1.5 text-white/80 hover:text-white transition-colors group"
+                  style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.12em" }}
                   onClick={() => setServicesOpen(v => !v)}
                   onMouseEnter={() => setServicesOpen(true)}
                 >
@@ -224,7 +228,7 @@ export default function SiteHeader({ variant, navLinks = [], onQuoteClick }: Sit
                   background: accent,
                   color: variant === "residential" ? "#0D0A05" : "#fff",
                   fontFamily: "'Barlow Condensed', sans-serif",
-                  fontSize: "0.8125rem",
+                  fontSize: "0.9375rem",
                   fontWeight: 700,
                   letterSpacing: "0.1em",
                 }}

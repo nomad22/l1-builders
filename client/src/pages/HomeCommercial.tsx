@@ -6,8 +6,7 @@
 import { useEffect } from "react";
 import SiteHeader from "@/components/SiteHeader";
 import HeroSection from "@/components/HeroSection";
-import WhySection from "@/components/WhySection";
-import CaseStudiesTeaser from "@/components/CaseStudiesTeaser";
+import OurWorkTeaser from "@/components/OurWorkTeaser";
 import StatsBar from "@/components/StatsBar";
 import ServicesSection from "@/components/ServicesSection";
 import HowWeWorkSection from "@/components/HowWeWorkSection";
@@ -22,16 +21,13 @@ export default function HomeCommercial() {
       <SiteHeader
         variant="commercial"
         navLinks={[
-          { label: "Why L1", href: "#why-l1" },
-          { label: "Case Studies", href: "#case-studies" },
-          { label: "How We Work", href: "#how-we-work" },
+          { label: "Our Work", href: "/our-work" },
           { label: "About", href: "#about" },
           { label: "Contact", href: "#contact" },
         ]}
       />
       <HeroSection />
-      <WhySection />
-      <CaseStudiesTeaser />
+      <OurWorkTeaser />
       <StatsBar />
       <ServicesSection />
       <HowWeWorkSection />

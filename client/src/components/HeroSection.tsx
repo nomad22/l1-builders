@@ -8,7 +8,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
-const HERO_IMAGE = "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1920&q=80";
+const HERO_IMAGE = "/heroBrownstone.jpg";
 
 export default function HeroSection() {
   const [visible, setVisible] = useState(false);
@@ -54,7 +54,7 @@ export default function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 lg:px-8 pb-20 lg:pb-28">
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 lg:px-8 pb-20 lg:pb-28">
         <div className="max-w-3xl">
           {/* Eyebrow */}
           <div
@@ -65,7 +65,7 @@ export default function HeroSection() {
               className="text-[#4A7FA5]"
               style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.18em" }}
             >
-              NYC &amp; LONG ISLAND — SINCE 2010
+              NYC — SINCE 2010
             </span>
           </div>
 

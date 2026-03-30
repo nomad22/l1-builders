@@ -15,7 +15,7 @@ async function startServer() {
 
   // Contact form submission
   app.post("/api/contact", async (req, res) => {
-    const { name, email, phone, propertyType, projectType, message, referral } = req.body;
+    const { name, email, phone, propertyType, budget, message } = req.body;
 
     if (!name || !email) {
       return res.status(400).json({ error: "Name and email are required." });
@@ -34,16 +34,15 @@ async function startServer() {
         from: "L1 Builders <ben@l1buildersny.com>",
         to: "ben@l1buildersny.com",
         replyTo: email,
-        subject: `New Lead: ${name} — ${projectType || "General Inquiry"}`,
+        subject: `New Lead: ${name} — ${budget || "Budget not specified"}`,
         html: `
           <h2>New Contact Form Submission</h2>
           <table cellpadding="8" style="border-collapse:collapse;width:100%">
             <tr><td><strong>Name</strong></td><td>${name}</td></tr>
             <tr><td><strong>Email</strong></td><td>${email}</td></tr>
             <tr><td><strong>Phone</strong></td><td>${phone || "—"}</td></tr>
-            <tr><td><strong>Property Type</strong></td><td>${propertyType || "—"}</td></tr>
-            <tr><td><strong>Project Type</strong></td><td>${projectType || "—"}</td></tr>
-            <tr><td><strong>Referral</strong></td><td>${referral || "—"}</td></tr>
+            ${propertyType ? `<tr><td><strong>Property Type</strong></td><td>${propertyType}</td></tr>` : ""}
+            <tr><td><strong>Budget</strong></td><td>${budget || "—"}</td></tr>
             <tr><td><strong>Message</strong></td><td>${message || "—"}</td></tr>
           </table>
         `,

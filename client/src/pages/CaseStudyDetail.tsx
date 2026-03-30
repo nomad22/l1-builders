@@ -50,7 +50,7 @@ export default function CaseStudyDetail() {
           />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(13,17,23,0.4) 0%, rgba(13,17,23,0.9) 100%)" }} />
         </div>
-        <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-8 pb-16 pt-8">
+        <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-8 pb-16 pt-8">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 mb-8">
             <Link href="/">
@@ -114,7 +114,7 @@ export default function CaseStudyDetail() {
       </div>
 
       {/* Main content */}
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-8 py-16">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           {/* Left: Narrative (2/3) */}
@@ -356,7 +356,7 @@ export default function CaseStudyDetail() {
 
       {/* Next case study */}
       <div className="border-t border-[#E8ECF0] bg-[#F5F7FA] py-12">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <Link href="/case-studies">
               <button className="flex items-center gap-2 text-[#52606D] hover:text-[#0D1117] transition-colors">

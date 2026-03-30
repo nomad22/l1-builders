@@ -21,7 +21,7 @@ export default function CaseStudiesPage() {
 
       {/* Page hero */}
       <div className="bg-[#1C2128] pt-32 pb-20">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <Link href="/">
             <button className="flex items-center gap-2 text-white/40 hover:text-white/70 transition-colors mb-8">
               <ArrowLeft size={14} />
@@ -65,12 +65,12 @@ export default function CaseStudiesPage() {
 
       {/* Stats summary bar */}
       <div className="bg-[#0D1117] border-b border-white/8">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/8">
             {[
               { value: `${caseStudies.length}`, label: "Case Studies" },
               { value: "4", label: "Property Types" },
-              { value: "NYC + LI", label: "Markets Covered" },
+              { value: "NYC", label: "Markets Covered" },
               { value: "100%", label: "On-Budget Delivery" },
             ].map((s) => (
               <div key={s.label} className="px-6 py-6 text-center">
@@ -93,7 +93,7 @@ export default function CaseStudiesPage() {
       </div>
 
       {/* Case study cards */}
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-8 py-20">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-20">
         <div className="space-y-8">
           {caseStudies.map((study, i) => (
             <Link key={study.id} href={`/case-studies/${study.id}`}>
@@ -193,7 +193,7 @@ export default function CaseStudiesPage() {
 
       {/* Bottom CTA */}
       <div className="bg-[#1C2128] py-20">
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8 text-center">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 text-center">
           <p
             className="text-[#4A7FA5] mb-4"
             style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6875rem", letterSpacing: "0.18em" }}

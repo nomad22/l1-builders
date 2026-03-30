@@ -44,11 +44,11 @@ export default function CommercialNavbar() {
         {/* Top strip — only visible when scrolled or on desktop */}
         <div className="hidden lg:flex items-center justify-between px-8 py-2 border-b border-white/8" style={{ background: "rgba(13,17,23,0.6)" }}>
           <span className="text-white/30" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.16em" }}>
-            NYC & LONG ISLAND — SINCE 2010
+            NYC — SINCE 2010
           </span>
           <Link href="/residential">
             <span
-              className="text-white/35 hover:text-[#D4A96A] transition-colors cursor-pointer"
+              className="text-white/35 hover:text-[#4A7FA5] transition-colors cursor-pointer"
               style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.14em" }}
             >
               ← SWITCH TO RESIDENTIAL
@@ -56,8 +56,8 @@ export default function CommercialNavbar() {
           </Link>
         </div>
 
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-[70px]">
             {/* Logo */}
             <Link href="/">
               <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-8 w-auto" />
@@ -121,7 +121,7 @@ export default function CommercialNavbar() {
             )
           )}
           <Link href="/residential" onClick={() => setMobileOpen(false)}>
-            <div className="text-left text-[#D4A96A]/70 hover:text-[#D4A96A] py-4 border-b border-white/10 transition-colors cursor-pointer" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.5rem", fontWeight: 600, letterSpacing: "0.04em" }}>
+            <div className="text-left text-[#4A7FA5]/70 hover:text-[#4A7FA5] py-4 border-b border-white/10 transition-colors cursor-pointer" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: "1.5rem", fontWeight: 600, letterSpacing: "0.04em" }}>
               ← Residential
             </div>
           </Link>

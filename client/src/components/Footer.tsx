@@ -14,19 +14,19 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#0D1117] border-t border-white/8">
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-8 py-14">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="mb-5">
-              <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-8 w-auto" />
+              <img src="/Logo/l1_logo_warm_cream_transparent.png" alt="L1 Builders" className="h-22 w-auto" />
             </div>
             <p
               className="text-white/40 max-w-xs"
               style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", lineHeight: 1.7, fontWeight: 300 }}
             >
               Vertically integrated construction firm specializing in value-add
-              renovations for property investors in NYC and Long Island.
+              renovations for property investors across NYC.
             </p>
           </div>
 
@@ -48,7 +48,7 @@ export default function Footer() {
                 <li key={item}>
                   <button
                     onClick={() => handleNavClick("#services")}
-                    className="text-white/50 hover:text-white/80 transition-colors text-left"
+                    className="text-white/75 hover:text-white transition-colors text-left"
                     style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", fontWeight: 300 }}
                   >
                     {item}
@@ -76,7 +76,7 @@ export default function Footer() {
                 <li key={item.label}>
                   <button
                     onClick={() => handleNavClick(item.href)}
-                    className="text-white/50 hover:text-white/80 transition-colors text-left"
+                    className="text-white/75 hover:text-white transition-colors text-left"
                     style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", fontWeight: 300 }}
                   >
                     {item.label}
@@ -98,7 +98,7 @@ export default function Footer() {
           <div className="flex items-center gap-6">
             <Link href="/residential">
               <span
-                className="text-white/25 hover:text-[#D4A96A] transition-colors cursor-pointer"
+                className="text-white/25 hover:text-[#C8963E] transition-colors cursor-pointer"
                 style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.12em" }}
               >
                 RESIDENTIAL ↗
@@ -108,7 +108,7 @@ export default function Footer() {
               className="text-white/25"
               style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.12em" }}
             >
-              NYC & LONG ISLAND · LICENSED & INSURED
+              NYC · LICENSED & INSURED
             </p>
           </div>
         </div>
